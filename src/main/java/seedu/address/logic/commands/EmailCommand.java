@@ -27,8 +27,6 @@ public class EmailCommand extends Command {
 
     private final Index targetIndex;
 
-    private Person personToEmail;
-
     public EmailCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -40,12 +38,12 @@ public class EmailCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        personToEmail = lastShownList.get(targetIndex.getZeroBased());
+        Person personToEmail = lastShownList.get(targetIndex.getZeroBased());
 
         String emailAddress = personToEmail.getEmail().toString();
         String emailName = personToEmail.getName().toString();
 
-        return new CommandResult(String.format(MESSAGE_EMAIL_PERSON_SUCCESS, personToEmail));
+        return new CommandResult(String.format(MESSAGE_EMAIL_PERSON_SUCCESS, emailName));
     }
 
     @Override
