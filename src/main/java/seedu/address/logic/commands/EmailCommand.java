@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Deletes a person identified using it's last displayed index from the address book.
@@ -17,6 +17,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class EmailCommand extends Command {
 
     public static final String COMMAND_WORD = "email";
+    public static final String MAIL_SYNTAX = "mailto:";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Email the person identified by the index number used in the last person listing.\n"
@@ -42,6 +43,14 @@ public class EmailCommand extends Command {
 
         String emailAddress = personToEmail.getEmail().toString();
         String emailName = personToEmail.getName().toString();
+
+        try {
+            Desktop.getDesktop().mail(new URI(MAIL_SYNTAX + emailAddress));
+        } catch (URISyntaxException Urierror) {
+            throw new CommandException(Messages.MAIL_APP_ERROR);
+        } catch (IOException e) {
+            throw new CommandException(Messages.MAIL_APP_ERROR);
+        }
 
         return new CommandResult(String.format(MESSAGE_EMAIL_PERSON_SUCCESS, emailName));
     }
