@@ -183,7 +183,6 @@ Format: `edit INDEX [n/NAME] [m/MATRICULATION NUMBER] [p/PHONE] [e/EMAIL] [a/ADD
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Replaced display pictures will be removed from storage upon the next start up of Your TA.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person's tags by typing `t/` without specifying any tags after it.
 ****
@@ -291,9 +290,6 @@ image::FirstDelete.png[width="800"]
 Command(s) entered: +
 `find Betsy`,`delete 1`: +
 The 1st person in the results of the `find` command is deleted, in this case, Betsy is deleted (Figure 15).
-
-[NOTE]
-The display picture that is stored on your hard disk will only be removed upon the next start up of Your TA.
 
 .1st Person from `find` Command Deleted. +
 image::SecondDelete.png[width="800"]
